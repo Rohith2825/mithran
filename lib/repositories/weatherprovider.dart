@@ -9,31 +9,30 @@ class WeatherProvider extends ChangeNotifier {
   Map<String, dynamic> weatherData = {};
   Map<String, dynamic> data = {}, currentData = {};
   List<dynamic> list = [];
-  String dailySummary= "";
+  String dailySummary = "";
   List<ForeCastModel> foreCastList = [];
   List<String> dailyForecastListIcons = [];
   List<Map<String, dynamic>> dailyForecastList = [];
-  
 
   Future<void> fetchWeatherData(String latitude, String longitude) async {
     isLoading = true;
     try {
       var weatherResponse = await http.get(
-          Uri.parse('http://34.122.191.130:5000/weather/currentWeather')
+          Uri.parse('http://34.93.22.161:3000/weather/currentWeather')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
       }));
 
       var forecastResponse = await http.get(
-          Uri.parse('http://34.122.191.130:5000/weather/hourlyForecast')
+          Uri.parse('http://34.93.22.161:3000/weather/hourlyForecast')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
       }));
 
       var dailyForecastResponse = await http.get(
-          Uri.parse('http://34.122.191.130:5000/weather/dailyForecast')
+          Uri.parse('http://34.93.22.161:3000/weather/dailyForecast')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
@@ -81,12 +80,12 @@ class WeatherProvider extends ChangeNotifier {
           var weather = list[i]['weather'];
           dailyForecastListIcons.add(weather[0]['icon']);
           var weatherData = {
-          'temperature': list[i]['temp']['day'],
-          'minTemperature': list[i]['temp']['day'] - 2.0,
-          'humidity': list[i]['humidity'],
-          'speed': list[i]['speed'],
-          'rainPossibility': list[i]['clouds'],
-          'rainMeasure': list[i]['rain']
+            'temperature': list[i]['temp']['day'],
+            'minTemperature': list[i]['temp']['day'] - 2.0,
+            'humidity': list[i]['humidity'],
+            'speed': list[i]['speed'],
+            'rainPossibility': list[i]['clouds'],
+            'rainMeasure': list[i]['rain']
           };
           dailyForecastList.add(weatherData);
         }

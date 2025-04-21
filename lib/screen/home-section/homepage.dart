@@ -78,8 +78,16 @@ class _HomePageState extends State<HomePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final provider = Provider.of<WeatherProvider>(context);
-    final iconCode = provider.currentData['weather'][0]['icon'];
-    final weatherCategory = getWeatherCategory(iconCode);
+    // Null safety guard
+  final iconCode = provider.currentData != null &&
+          provider.currentData['weather'] != null &&
+          provider.currentData['weather'].isNotEmpty
+      ? provider.currentData['weather'][0]['icon']
+      : null;
+
+  final weatherCategory = iconCode != null
+      ? getWeatherCategory(iconCode)
+      : 'Sunny';
 
     setState(() {
       weather = weatherCategory;
