@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PlantixService extends ChangeNotifier {
-  final String _apiUrl = 'http://34.93.22.161:3000/plantix/detect-disease';
+  final String _apiUrl = 'http://35.244.43.148:5000/plantix/detect-disease';
   String title = "";
   String pathogen = "";
   String chemicalTreatment = "";

@@ -18,21 +18,21 @@ class WeatherProvider extends ChangeNotifier {
     isLoading = true;
     try {
       var weatherResponse = await http.get(
-          Uri.parse('http://34.93.22.161:3000/weather/currentWeather')
+          Uri.parse('http://35.244.43.148:5000/weather/currentWeather')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
       }));
 
       var forecastResponse = await http.get(
-          Uri.parse('http://34.93.22.161:3000/weather/hourlyForecast')
+          Uri.parse('http://35.244.43.148:5000/weather/hourlyForecast')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
       }));
 
       var dailyForecastResponse = await http.get(
-          Uri.parse('http://34.93.22.161:3000/weather/dailyForecast')
+          Uri.parse('http://35.244.43.148:5000/weather/dailyForecast')
               .replace(queryParameters: {
         'lat': latitude,
         'lon': longitude,
